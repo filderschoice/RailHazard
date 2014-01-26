@@ -13,3 +13,9 @@
 [submodule "libraries/jquery"]
 	path = libraries/jquery
 	url = git://github.com/jquery/jquery.git
+[submodule "app/Vendor/tmhOAuth"]
+	path = app/Vendor/tmhOAuth
+	url = git://github.com/themattharris/tmhOAuth.git
+[submodule "app/Vendor/facebook"]
+	path = app/Vendor/facebook
+	url = git://github.com/facebook/facebook-php-sdk.git
