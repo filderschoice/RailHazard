@@ -1,0 +1,60 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+ul.timeline {
+	padding:0px;
+}
+
+ul.timeline > li{
+	list-style: none;
+	border:1px solid #000;
+}
+
+ul.timeline > li div.train-image,
+ul.timeline > li div.train-info{
+	padding:20px;
+}
+
+ul.timeline > li h3.train-name {
+	margin-top:0px;
+}
+
+
+.hazard {
+	margin:10px 0px 10px 0px;
+}
+
+.hazard .hazard-item {
+	border:3px solid #ddd;
+	padding:5px;
+	border-radius:5px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.hazard .hazard-item.hazard-alert {
+	border:3px solid #f00;
+}
+
+.hazard .hazard-item .row {
+	margin-left:0px;
+	margin-right:0px;
+}
+
+.hazard .hazard-item.hazard-alert .hazard-title {
+	color: #f00;
+	font-weight:bold;
+}
+
+.hazard .hazard-item .row .train-image {
+	width:20%;
+	float:left;
+}
+.hazard .hazard-item .row .train-info {
+	width:80%;
+	float:left;
+}

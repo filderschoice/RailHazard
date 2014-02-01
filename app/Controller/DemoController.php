@@ -8,6 +8,13 @@ class DemoController extends BasicController {
 	}
 
 	public function index(){
+	}
+
+	public function mock(){
+
+	}
+
+	public function mock2(){
 
 	}
 

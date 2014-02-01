@@ -19,3 +19,13 @@
 Icon?
 ehthumbs.db
 Thumbs.db
+
+/app/Config/Database/*
+/app/Config/Bootstrao/*
+/app/Config/Core/*
+!/app/Config/Database/sample.php
+!/app/Config/Bootstrap/sample.php
+!/app/Config/Core/sample.php
+
+
+

@@ -26,6 +26,28 @@ $ git submodule update --init
 
 CakePHPについての詳しい説明は省略
 
+## CAKEPHP の設定(2月1日 新規追加)
+
+各種WebAPI等のコンシューマーキーやパスなどの漏洩を防ぐ為に，
+CakePHPのコンフィグの管理方式を一部修正しています。
+
++ app/Config/Core/
++ app/Config/Bootstrap/
++ app/Config/Database/
+
+それぞれのディレクトリにあった「development.php」ファイルを，
+sample.phpという名前に変更しています。
+
+自分の環境でアプリケーションを動かす際は，下記の通りファイルをコピーして
+使ってください。
+
+```
+$cp app/Config/Core/sample.php app/Config/Core/development.php
+$cp app/Config/Bootstrap/sample.php app/Config/Bootstrap/development.php
+$cp app/Config/Database/sample.php app/Config/Database/development.php
+※development.phpの「development」は，apacheに設定した環境変数の値になります。
+```
+
 ## ベースクラスについて
 
 ベースとなるクラスを，API用と，ページ用に分けています

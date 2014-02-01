@@ -113,3 +113,6 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+# 公共交通期間APIのコンシューマーキーをセットする
+define("CONSUMER_RAIL_API","");

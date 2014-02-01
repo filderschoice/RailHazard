@@ -61,11 +61,12 @@
  */
 class DATABASE_CONFIG {
 
+	//MONGODBの設定をここに書く
 	public $default = array(
 		'datasource' => 'Mongodb.MongodbSource',
 		'host' => 'localhost',
-		'database' => 'blog',
-		'port' => 27017,
+		'database' => 'rail_db',
+		'port' => ,
 		'prefix' => '',
 		'persistent' => 'true',
 	);
