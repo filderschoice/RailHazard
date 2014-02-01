@@ -16,3 +16,6 @@
 [submodule "app/Vendor/facebook"]
 	path = app/Vendor/facebook
 	url = git://github.com/facebook/facebook-php-sdk.git
+[submodule "app/Plugin/Mongodb"]
+	path = app/Plugin/Mongodb
+	url = git://github.com/ukyoda/cakephp-mongodb
