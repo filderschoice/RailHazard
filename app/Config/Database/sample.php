@@ -64,8 +64,8 @@ class DATABASE_CONFIG {
 	//MONGODBの設定を書いてください
 	public $default = array(
 		'datasource' => 'Mongodb.MongodbSource',
-		'host' => 'localhost',
-		'database' => 'rail_db',
+		'host' => '',
+		'database' => '',
 		'port' => ,
 		'prefix' => '',
 		'persistent' => 'true',
