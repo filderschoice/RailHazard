@@ -15,7 +15,6 @@ class DemoController extends BasicController {
 	}
 
 	public function mock2(){
-
 	}
 
 }

@@ -61,8 +61,36 @@
  */
 class DATABASE_CONFIG {
 
-	//MONGODBの設定を書いてください
+	/**
+	 * RailHazardのユーザ情報とかを取り扱う為のDB(デフォルトDB)
+	 */
 	public $default = array(
+		'datasource' => 'Mongodb.MongodbSource',
+		'host' => '',
+		'database' => '',
+		'port' => ,
+		'prefix' => '',
+		'persistent' => 'true',
+	);
+
+	/**
+	 * 公共交通機関APIのデータを格納するDB
+	 * @var array
+	 */
+	public $rail_db = array(
+		'datasource' => 'Mongodb.MongodbSource',
+		'host' => '',
+		'database' => '',
+		'port' => ,
+		'prefix' => '',
+		'persistent' => 'true',
+	);
+
+	/**
+	 * マスターデータを管理するDB。基本的にこのDBに接続する場合は更新を掛けないようにする
+	 * @var array
+	 */
+	public $rail_master = array(
 		'datasource' => 'Mongodb.MongodbSource',
 		'host' => '',
 		'database' => '',

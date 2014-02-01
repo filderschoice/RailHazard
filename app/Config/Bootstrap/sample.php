@@ -51,9 +51,15 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 
+/**
+ * ディレクトリ構成を拡張
+ */
 App::build(array(
 'Controller' => array(
 		ROOT.DS.APP_DIR.DS.'Controller'.DS.'Api'.DS
+	),
+'Model' => array(
+		ROOT.DS.APP_DIR.DS.'Model'.DS.'RailDB'.DS
 	)
 ));
 
