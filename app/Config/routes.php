@@ -40,6 +40,7 @@
 	 * APIルーティング設定
 	 */
 	Router::connect('/api/test/sample',array('controller' => 'apiTest', 'action' => 'sample', 'ext'=>'json'));
+	Router::connect('/api/railInfo', array('controller' => 'railInfo', 'action' => 'view', 'ext'=>'json'));
 
 
 /**

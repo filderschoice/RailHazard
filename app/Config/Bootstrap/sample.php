@@ -59,7 +59,9 @@ App::build(array(
 		ROOT.DS.APP_DIR.DS.'Controller'.DS.'Api'.DS
 	),
 'Model' => array(
-		ROOT.DS.APP_DIR.DS.'Model'.DS.'RailDB'.DS
+		ROOT.DS.APP_DIR.DS.'Model'.DS.'RailDB'.DS,
+		ROOT.DS.APP_DIR.DS.'Model'.DS.'RailMaster'.DS,
+		ROOT.DS.APP_DIR.DS.'Model'.DS.'RailHazard'.DS,
 	)
 ));
 
