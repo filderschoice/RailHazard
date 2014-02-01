@@ -114,5 +114,5 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
-# $B8x6&8rDL4|4V(BAPI$B$N%3%s%7%e!<%^!<%-!<$r%;%C%H$9$k(B
+# オープンデータのコンシューマ登録
 define("CONSUMER_RAIL_API","");

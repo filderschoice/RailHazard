@@ -61,7 +61,7 @@
  */
 class DATABASE_CONFIG {
 
-	//MONGODB$B$N@_Dj$r$3$3$K=q$/(B
+	//MONGODBの設定を書いてください
 	public $default = array(
 		'datasource' => 'Mongodb.MongodbSource',
 		'host' => 'localhost',
