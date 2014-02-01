@@ -4,11 +4,12 @@ App::uses("HttpSocket","Network/Http");
 class RailApiShell extends AppShell {
 	var $consumer = CONSUMER_RAIL_API;
 	var $trainInfoUrl = "https://api.odpt.org/api/v2/datapoints";
-	var $uses = array("Keio", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
+	var $uses = array("JREast", "Keio", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
 	public function _welcome() {}
 
 	public function main(){
-		//$data = $this->getJR();
+		$data = $this->getJREast();
+		$this->save($data, $this->JREast);
 		$data = $this->getTobu();
 		$this->save($data, $this->Tobu);
 		$data = $this->getTX();
@@ -23,8 +24,6 @@ class RailApiShell extends AppShell {
 		$this->save($data, $this->TokyoMetro);
 		$data = $this->getTokyu();
 		$this->save($data, $this->Tokyu);
-
-		//$this->out(print_r($data,true));
 	}
 
 	private function save($data,$model){
@@ -41,7 +40,7 @@ class RailApiShell extends AppShell {
 	 * JR東日本の運行情報を取得する
 	 * @return [type] [description]
 	 */
-	private function getJR(){
+	private function getJREast(){
 		return  $this->getData("JR-East");
 	}
 
