@@ -123,7 +123,7 @@ class RailApiShell extends AppShell {
 		if($res->code == 200){
 			return json_decode($res->body,true);
 		} else {
-			$this->log($e->getMessage(),"Shell_Error");
+			$this->log($res->code . ": ".$res->reasonPhrase,"Shell_Error");
 			return null;
 		}
 	}
