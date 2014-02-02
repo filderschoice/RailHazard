@@ -1,6 +1,6 @@
 <?PHP
 /**
- * RailHazard用マイグレーションDB
+ * RailHazard用マイグレーション用のシェル
  */
 class RailHazardShell extends AppShell {
 	/**
@@ -24,7 +24,9 @@ class RailHazardShell extends AppShell {
 			array("TokyoMetro", "東京メトロ"),
 			array("Tokyu", "東急線"),
 			array("TX", "つくばエクスプレス"),
-			array("Yurikamome","ゆりかもめ")
+			array("Yurikamome","ゆりかもめ"),
+			array("Keikyu","京急線"),
+			array("Seibu","西武線")
 		);
 		$i = 10001;
 		foreach($data as $value){
@@ -37,6 +39,5 @@ class RailHazardShell extends AppShell {
 		}
 		$this->out('Collection "Target" Created!!');
 	}
-
 
 }

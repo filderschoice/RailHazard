@@ -4,7 +4,7 @@ App::uses("HttpSocket","Network/Http");
 class RailApiShell extends AppShell {
 	var $consumer = CONSUMER_RAIL_API;
 	var $trainInfoUrl = "https://api.odpt.org/api/v2/datapoints";
-	var $uses = array("JREast", "Keio", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
+	var $uses = array("JREast", "Keio", "Keikyu", "Seibu", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
 	public function _welcome() {}
 
 	public function main(){
@@ -24,6 +24,10 @@ class RailApiShell extends AppShell {
 		$this->save($data, $this->TokyoMetro);
 		$data = $this->getTokyu();
 		$this->save($data, $this->Tokyu);
+		$data = $this->getSeibu();
+		$this->save($data, $this->Seibu);
+		$data = $this->getKeikyu();
+		$this->save($data, $this->Keikyu);
 	}
 
 	private function save($data,$model){
@@ -91,6 +95,20 @@ class RailApiShell extends AppShell {
 	 */
 	private function getTokyu(){
 		return $this->getData("Tokyu");
+	}
+
+	/**
+	 * 西武電鉄
+	 */
+	private function getSeibu(){
+		return $this->getData("Seibu");
+	}
+
+	/**
+	 * 京急
+	 */
+	private function getKeikyu(){
+		return $this->getData("Keikyu");
 	}
 
 	private function getData($target,$extend = array()){
