@@ -9,6 +9,7 @@
 		<?PHP
 		//ライブラリ読み込み
 		echo $this->Html->css("/libs/bootstrap/css/bootstrap.min.css");
+		echo $this->Html->css("demo.css");
 		echo $this->Html->script("/libs/jquery/jquery.min.js");
 		echo $this->Html->script("/libs/bootstrap/js/bootstrap.min.js");
 		?>
