@@ -19,7 +19,6 @@ class RailApiShell extends AppShell {
 	 */
 	public function initialize(){
 		$this->consumer = Configure::read('APIConsumer.rail_api');
-		print $this->consumer;
 	}
 
 	/**
@@ -33,7 +32,7 @@ class RailApiShell extends AppShell {
 	public function main(){
 		//trainInfo情報を取得する
 		$trainInfoCompanies = $this->getCompanies();
-		print_r($trainInfoCompanies);
+		//print_r($trainInfoCompanies);
 
 		//trainInfo分繰り返し
 		foreach($trainInfoCompanies as $value ){
@@ -42,9 +41,12 @@ class RailApiShell extends AppShell {
 			$data = $this->getData($accessTarget);
 			//データがとれていたら下記の登録処理を行う
 			if(is_array($data)) {
-				$this->saveRailway($value,$data);
-				//$this->saveTrainInfo($value,$data);
+				foreach($data as $trainInfo) {
+					$this->saveRailway($value,$trainInfo);
+					$this->saveTrainInfo($value,$trainInfo);
+				}
 			}
+			//break;
 		}
 	}
 
@@ -75,8 +77,27 @@ class RailApiShell extends AppShell {
 	/**
 	 * 運行情報登録
 	 */
-	private function saveTrainInfo($data){
+	private function saveTrainInfo($company, $data){
+		$company_id = $company["_id"];
+		$target = $company["target"];
+		$railwayName = @$data["odpt:trainInfoRailway"];
 
+		if(empty($railwayName)){
+			$railway_id = -1;
+		} else {
+			$railway_id = GenerateId::generate($railwayName);
+			$res = $this->Railway->find("first",array(
+				"conditions"=>array("_id"=>$railway_id)
+			));
+			if(empty($res)){
+				$railway_id = -1;
+			}
+		}
+		$data["_id"] = $data["@id"];
+		$data["company_id"] = $company_id;
+		$data["railway_id"] = $railway_id;
+		//保存
+		$this->$target->save($data);
 	}
 
 	/**
@@ -95,7 +116,6 @@ class RailApiShell extends AppShell {
 		$socket = new HttpSocket();
 		$res = $socket->get($this->trainInfoUrl,$param);
 		if($res->code == 200){
-			print "WWW".PHP_EOL;
 			return json_decode($res->body,true);
 		} else {
 			$this->log($res->code . ": ".$res->reasonPhrase,"Shell_Error");

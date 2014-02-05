@@ -12,8 +12,8 @@ class Railway extends RailMasterModel {
 	 * @param stirng $railwayName 路線情報
 	 * @param string $companyId 鉄道会社ID(TrainInfoCompany._id)
 	 */
-	public function setRailwayInfo($railwayName, $company_idd){
-		if(!is_string($railwayName) || !is_string($company)){return false;}
+	public function setRailwayInfo($railwayName, $company_id){
+		if(!is_string($railwayName) || !is_string($company_id)){return false;}
 		//ID生成
 		$_id = $this->genId($railwayName);
 
