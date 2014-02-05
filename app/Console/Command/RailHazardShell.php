@@ -15,27 +15,22 @@ class RailHazardShell extends AppShell {
 	 * 公共交通データのアクセスポイントのリスト作成
 	 */
 	public function createAccessPoint(){
-		$this->loadModel('RailTarget');
+		$this->loadModel('Company');
 		$data = array(
-			array("JREast", "JR東日本"),
-			array("Keio", "京王線"),
-			array("Keisei", "京成線"),
-			array("Tobu", "東武線"),
-			array("TokyoMetro", "東京メトロ"),
-			array("Tokyu", "東急線"),
-			array("TX", "つくばエクスプレス"),
-			array("Yurikamome","ゆりかもめ"),
-			array("Keikyu","京急線"),
-			array("Seibu","西武線")
+			array("JR東日本", "JREast", "JR-East"),
+			array("京王線", "Keio", "Keio"),
+			array("京成線", "Keisei", "Keisei"),
+			array("東武線", "Tobu", "Tobu"),
+			array("東京メトロ", "TokyoMetro", "TokyoMetro"),
+			array("東急線", "Tokyu", "Tokyu"),
+			array("つくばエクスプレス", "TX", "TX"),
+			array("ゆりかもめ", "Yurikamome", "Yurikamome"),
+			array("京急線", "Keikyu", "Keikyu"),
+			array("西武線", "Seibu", "Seibu")
 		);
-		$i = 10001;
+
 		foreach($data as $value){
-			$this->RailTarget->save(array(
-				"_id"=>$i,
-				"target"=>$value[0],
-				"name"=>$value[1]
-			));
-			$i++;
+			$this->Company->setTrainInfo($value[0],$value[1],$value[2]);
 		}
 		$this->out('Collection "Target" Created!!');
 	}

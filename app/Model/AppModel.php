@@ -30,4 +30,13 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	/**
+	 * ID生成
+	 * @param  [type] $val [description]
+	 * @return [type]      [description]
+	 */
+	protected function genId($val){
+		return GenerateId::generate($val);
+	}
 }

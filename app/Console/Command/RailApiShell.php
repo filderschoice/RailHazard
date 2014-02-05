@@ -1,116 +1,90 @@
 <?PHP
 App::uses("HttpSocket","Network/Http");
 
+/**
+ * APIから運行情報を取得する.
+ * ※運行情報とともにrailway情報もここで登録する
+ */
 class RailApiShell extends AppShell {
-	var $consumer = CONSUMER_RAIL_API;
+	var $consumer;
 	var $trainInfoUrl = "https://api.odpt.org/api/v2/datapoints";
-	var $uses = array("JREast", "Keio", "Keikyu", "Seibu", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
+	var $uses = array(
+		"Railway", "Company",
+		"JREast", "Keio", "Keikyu",
+		"Seibu", "Keisei", "Tobu",
+		"TokyoMetro", "Tokyu", "TX", "Yurikamome");
+	/**
+	 * シェル初期化
+	 * コンシューマキー設定
+	 */
+	public function initialize(){
+		$this->consumer = Configure::read('APIConsumer.rail_api');
+		print $this->consumer;
+	}
+
+	/**
+	 * デフォルトで表示されるメッセージを封殺
+	 */
 	public function _welcome() {}
 
+	/**
+	 * メイン文
+	 */
 	public function main(){
-		$data = $this->getJREast();
-		$this->save($data, $this->JREast);
-		$data = $this->getTobu();
-		$this->save($data, $this->Tobu);
-		$data = $this->getTX();
-		$this->save($data, $this->TX);
-		$data = $this->getKeisei();
-		$this->save($data, $this->Keisei);
-		$data = $this->getKeio();
-		$this->save($data, $this->Keio);
-		$data = $this->getYurikamome();
-		$this->save($data, $this->Yurikamome);
-		$data = $this->getTokyoMetro();
-		$this->save($data, $this->TokyoMetro);
-		$data = $this->getTokyu();
-		$this->save($data, $this->Tokyu);
-		$data = $this->getSeibu();
-		$this->save($data, $this->Seibu);
-		$data = $this->getKeikyu();
-		$this->save($data, $this->Keikyu);
-	}
+		//trainInfo情報を取得する
+		$trainInfoCompanies = $this->getCompanies();
+		print_r($trainInfoCompanies);
 
-	private function save($data,$model){
-		$result = array();
-		foreach($data as $value){
-			$id = $value["@id"];
-			$value["_id"] = $id;
-			$model->save($value);
+		//trainInfo分繰り返し
+		foreach($trainInfoCompanies as $value ){
+			$accessTarget = $value["odpt:trainInfoCompany"];
+			//データ取得
+			$data = $this->getData($accessTarget);
+			//データがとれていたら下記の登録処理を行う
+			if(is_array($data)) {
+				$this->saveRailway($value,$data);
+				//$this->saveTrainInfo($value,$data);
+			}
 		}
-		return $this;
 	}
 
 	/**
-	 * JR東日本の運行情報を取得する
-	 * @return [type] [description]
+	 * accessTarget取得
 	 */
-	private function getJREast(){
-		return  $this->getData("JR-East");
+	public function getCompanies(){
+		$res = $this->Company->find("all",array(
+			"fields"=>array("_id", "odpt:trainInfoCompany", "target", "name")
+		));
+		$result = array();
+		foreach($res as $key=>$value) {
+			$result[] = $value["Company"];
+		}
+		return $result;
 	}
 
 	/**
-	 * 東武鉄道の運行情報を取得する
+	 * 路線情報登録
+	 * @param
 	 */
-	private function getTobu(){
-		return  $this->getData("Tobu");
+	private function saveRailway($company, $data){
+		$railway = @$data["odpt:trainInfoRailway"];
+		if(!is_string($railway)){return false;}
+		$this->Railway->setRailwayInfo($railway,$company["_id"]);
 	}
 
 	/**
-	 * 筑波エクスプレス
+	 * 運行情報登録
 	 */
-	private function getTX(){
-		return $this->getData("TX");
+	private function saveTrainInfo($data){
+
 	}
 
 	/**
-	 * 京成電鉄
+	 * APIから運行情報を取得する
+	 * @param  [type] $target [description]
+	 * @param  array  $extend [description]
+	 * @return [type]         [description]
 	 */
-	private function getKeisei(){
-		return $this->getData("Keisei");
-	}
-
-	/**
-	 * 京王電鉄
-	 */
-	private function getKeio(){
-		return $this->getData("Keio");
-	}
-
-	/**
-	 * ゆりかもめ
-	 */
-	private function getYurikamome(){
-		return $this->getData("Yurikamome");
-	}
-
-	/**
-	 * 東京メトロ
-	 */
-	private function getTokyoMetro(){
-		return $this->getData("TokyoMetro");
-	}
-
-	/**
-	 * 東急電鉄
-	 */
-	private function getTokyu(){
-		return $this->getData("Tokyu");
-	}
-
-	/**
-	 * 西武電鉄
-	 */
-	private function getSeibu(){
-		return $this->getData("Seibu");
-	}
-
-	/**
-	 * 京急
-	 */
-	private function getKeikyu(){
-		return $this->getData("Keikyu");
-	}
-
 	private function getData($target,$extend = array()){
 		$defaultParam = array(
 			"rdf:type"=>"odpt:TrainInfo",
@@ -121,6 +95,7 @@ class RailApiShell extends AppShell {
 		$socket = new HttpSocket();
 		$res = $socket->get($this->trainInfoUrl,$param);
 		if($res->code == 200){
+			print "WWW".PHP_EOL;
 			return json_decode($res->body,true);
 		} else {
 			$this->log($res->code . ": ".$res->reasonPhrase,"Shell_Error");

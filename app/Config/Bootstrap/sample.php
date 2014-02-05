@@ -122,5 +122,23 @@ CakeLog::config('error', array(
 	'file' => 'error',
 ));
 
+/******************************************************
+ ******************************************************/
+
+/**
+ * 共通で利用するコンポーネント読み込み
+ */
+App::uses('GenerateId','Lib');
+
+/**
+ * 各種パラメータ設定
+ */
+
 # オープンデータのコンシューマ登録
-define("CONSUMER_RAIL_API","");
+Configure::write("APIConsumer",array(
+	"rail_api"=>""
+));
+# GenerateIdComponentで利用するsalt ※ランダムな数値を入力
+Configure::write("GenerateId",array(
+	"salt"=>"gtnhouitiqj50y8hot6h9jitnpijgrapo"
+));
