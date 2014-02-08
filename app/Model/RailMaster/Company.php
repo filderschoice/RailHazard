@@ -6,7 +6,17 @@ App::uses('RailMasterModel','Model');
  */
 class Company extends RailMasterModel {
 	var $useTable = "company";
+	var $primaryKey = "_id";
 
+	/**
+	 * レスポンスデータ取得
+	 */
+	public function getData($conditions){
+		return $this->find("all",array(
+			"fields"=>array("_id","odpt:trainInfoCompany","name"),
+			"conditions"=>$conditions
+		));
+	}
 
 	/**
 	 * odpt:TrainInfoマスターデータを登録する

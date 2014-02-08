@@ -34,15 +34,15 @@
 	/**
 	 * REST API設定
 	 */
-	Router::mapResources('recipes');
+	Router::mapResources(array('trainInfo','company','railway'));
 	Router::parseExtensions('json');
 
 	/**
 	 * APIルーティング設定
 	 */
-	Router::connect('/api/test/sample',array('controller' => 'apiTest', 'action' => 'sample', 'ext'=>'json'));
-	Router::connect('/api/railInfo', array('controller' => 'railInfo', 'action' => 'view', 'ext'=>'json'));
-
+	Router::connect('/api/trainInfo', array('controller' => 'trainInfo', 'action' => 'view', 'ext'=>'json'));
+	Router::connect('/api/company'  , array('controller' => 'company'  , 'action' => 'view', 'ext'=>'json'));
+	Router::Connect('/api/railway', array('controller' => 'railway', 'action' => 'view', 'ext'=>'json'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

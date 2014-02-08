@@ -2,8 +2,13 @@
 
 App::uses('ApiController','Controller');
 
-class RailInfoController extends ApiController {
-	var $uses = array("JREast", "Keio", "Keikyu", "Seibu", "Keisei", "Tobu", "TokyoMetro", "Tokyu", "TX", "Yurikamome");
+class TrainInfoController extends ApiController {
+	var $uses = array(
+		"Company", "Railway",
+		"JREast", "Keio", "Keikyu",
+		"Seibu", "Keisei", "Tobu",
+		"TokyoMetro", "Tokyu", "TX", "Yurikamome"
+	);
 
 	/**
 	 * ユーザデータ取得

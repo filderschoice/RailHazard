@@ -32,6 +32,21 @@ App::uses('Model', 'Model');
 class AppModel extends Model {
 
 	/**
+	 * プライマリーキーでデータ取得
+	 * @param  [type] $id     [description]
+	 * @param  array  $fields フィールド名（指定がない場合はnullを指定し,全フィールドを取得する））
+	 * @return [type]         [description]
+	 */
+	public function getById($id, $fields = null){
+		return $this->find("first",array(
+			"fields"=>$fields,
+			"conditions"=>array(
+				$this->primaryKey=>$id
+			)
+		));
+	}
+
+	/**
 	 * ID生成
 	 * @param  [type] $val [description]
 	 * @return [type]      [description]

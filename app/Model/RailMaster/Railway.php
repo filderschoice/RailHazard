@@ -6,6 +6,7 @@ App::uses('RailMasterModel','Model');
  */
 class Railway extends RailMasterModel {
 	var $useTable = "railway";
+	var $primaryKey = "_id";
 
 	/**
 	 * パスワード登録
