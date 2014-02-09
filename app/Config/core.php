@@ -1,4 +1,5 @@
 <?PHP
+pr("(".env('RLHZRD_ENV').")");
 
 if (env('RLHZRD_ENV') === null) {
   config('Core/production');
