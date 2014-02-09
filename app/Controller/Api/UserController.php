@@ -19,7 +19,7 @@ class UserController extends ApiController {
 		if(empty($data)){
 			throw new ForbiddenException();
 		} else {
-			$this->userInfo = $data;
+			$this->userInfo = $data['User'];
 		}
 	}
 	/**
