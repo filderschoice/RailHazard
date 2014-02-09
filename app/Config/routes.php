@@ -40,9 +40,11 @@
 	/**
 	 * APIルーティング設定
 	 */
-	Router::connect('/api/trainInfo', array('controller' => 'trainInfo', 'action' => 'view', 'ext'=>'json'));
-	Router::connect('/api/company'  , array('controller' => 'company'  , 'action' => 'view', 'ext'=>'json'));
-	Router::Connect('/api/railway', array('controller' => 'railway', 'action' => 'view', 'ext'=>'json'));
+	Router::connect('/api/trainInfo', array('controller' => 'trainInfo', 'action' => 'index', 'ext'=>'json'));
+	Router::connect('/api/company'  , array('controller' => 'company'  , 'action' => 'index', 'ext'=>'json'));
+	Router::Connect('/api/railway', array('controller' => 'railway', 'action' => 'index', 'ext'=>'json'));
+	Router::Connect('/api/user', array('controller' => 'user', 'action' => 'index', '[method]'=>'GET', 'ext'=>'json'));
+	Router::Connect('/api/user', array('controller' => 'user', 'action' => 'save', '[method]'=>'POST', 'ext'=>'json'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

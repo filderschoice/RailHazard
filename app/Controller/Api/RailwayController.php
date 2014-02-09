@@ -5,7 +5,7 @@ App::uses('ApiController', 'Controller');
 class RailwayController extends ApiController {
 	var $uses = array('Company','Railway');
 
-	public function view(){
+	public function index(){
 		$companies = $this->getCompanies();
 		$this->getParameter("GET",array("odpt:trainInfoCompany"),array("modified","created"));
 		$railway = $this->getRailway($this->parameter);

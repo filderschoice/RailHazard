@@ -1,7 +1,7 @@
 <?PHP
 
-App::uses('RailHazard','Model');
+App::uses('RailHazardModel','Model');
 
-class User extends RailHazard {
-
+class User extends RailHazardModel {
+	var $useTable = 'users';
 }

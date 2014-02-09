@@ -10,7 +10,7 @@ class CompanyController extends ApiController {
 	/**
 	 * 鉄道会社データを取得
 	 */
-	public function view(){
+	public function index(){
 		$this->getParameter("GET",array(),array("target","modified","created"));
 		$data = $this->Company->getData($this->parameter);
 		$this->response($data);

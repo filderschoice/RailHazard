@@ -134,9 +134,13 @@ App::uses('GenerateId','Lib');
  * 各種パラメータ設定
  */
 
-# オープンデータのコンシューマ登録
+# コンシューマ登録
 Configure::write("APIConsumer",array(
-	"rail_api"=>""
+	"rail_api"=>"",	//オープンデータ
+	"twttr_api"=>array(
+		"consumer_key"=>"",
+		"consumer_secret"=>""
+	)
 ));
 # GenerateIdComponentで利用するsalt ※ランダムな数値を入力
 Configure::write("GenerateId",array(
