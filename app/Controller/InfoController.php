@@ -3,6 +3,10 @@
 App::uses('BasicController','Controller');
 
 class InfoController extends BasicController{
+
+	// マクロ定義
+	$ALERT_NOTDENGER = 0;
+	$ALERT_DENGER = 1;
 	
 	public function beforeFilter(){
 		parent::beforeFilter();
@@ -134,6 +138,36 @@ class InfoController extends BasicController{
 			echo 'value=', $value, '>', $text, '</option>';
 		}
 		echo "</select>";
+	}
+
+	public function railway_info($railname, ){
+		<?php
+			// 運行情報表示マクロ
+			echo "<div class=\"hazard-item hazard\">";
+			// 路線名
+			echo '<h4 class=\"hazard-title\">', $railname, '</h4>';
+			// 路線運行状態
+			echo '<h4 class=\"hazard-status\">';
+				switch($railstatus){
+				case $ALERT_DENGER:		// 異常時
+					'<span class=\"label label-danger\">', '</h4>';
+					break;
+				case $ALERT_NOTDENGER:	// 正常時
+				defalut:				// その他
+					'<span class=\"label label-default\">', '</h4>';
+					break;
+				}
+			echo 'ALERT!</span>';
+			echo '</h4>';
+			// 路線状況詳細１
+			echo '<div class=\"row\">';
+			echo '<div class=\"train-image\">';
+				echo $this-Html->image("tojo.gif");
+			echo '</div>';
+			echo '<div class=\"train-info\">';
+				echo $railname, 
+			echo '</div>';
+		?>
 	}
 }
 

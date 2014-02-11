@@ -85,6 +85,40 @@
 										} 
 								?></h4>
 							<div class="hazard">
+								<script id="railway_info" type="text/x-jquery-tmpl">
+									{{if railstatus == 0}}		// 正常時
+										<div class="hazard-item">
+									{{else railstatus == 1}}	// 異常時
+										<div class="hazard-item hazard">
+									{{else}}					// それ以外
+										// 処理なし
+									{{/if}}
+									<h4 class="hazard-title">${railname}</h4>
+									<h4 class="hazard-status">${railname}</h4>
+									{{if railstatus == 0}}		// 正常時
+										<span class="label label-default">ALERT!!</span>
+									{{else railstatus == 1}}	// 異常時
+										<span class="label label-danger">ALERT!!</span>
+									{{else}}					// それ以外
+										// 処理なし
+									{{/if}}
+									</h4>
+									<div class="row">
+										<div class="train-image">
+											//
+										</div>
+										<div class="train-info">
+											${info_message}
+										</div>
+									</div>
+									<div class="row">
+										<div class="pull-right" style="margin-top:10px;">
+											<button class="btn btn-default" onclick="location.href='#'">More</button>
+											<button class="btn btn-info" onclick="location.href='#'">Tweetを見る</button>
+										</div>
+									</div>
+								</script>
+
 								<div class="hazard-item hazard">
 									<h4 class="hazard-title">副都心線</h4>
 									<h4 class="hazard-status">
