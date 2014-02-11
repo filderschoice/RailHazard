@@ -19,7 +19,7 @@ class RailwayController extends ApiController {
 	 * @return [type] [description]
 	 */
 	private function getCompanies(){
-		$companies = $this->Company->find("all");
+		$companies = $this->Company->getData(null);
 		$result = array();
 		foreach($companies as $key=>$value){
 			$id = $value["Company"]["_id"];

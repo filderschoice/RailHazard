@@ -43,14 +43,24 @@ class UserController extends ApiController {
 	 * @return [type] [description]
 	 */
 	public function save(){
-		$this->getParameter('POST', array('odpt:trainInfoRailway'));
+		$this->getParameter('POST', array('_id'));
 		$data = $this->userInfo;
 		if(empty($data['myRoot'])){
 			$data['myRoot'] = array();
 		}
+
+		if(!$this->Railway->checkRailway($this->parameter['odpt:trainInfoRailway'])){
+			throw new BadRequestException('Bad Parameter');
+		}
+
 		$this->User->save($data);
 		//更新後のデータ取得
 		$this->index();
 	}
+
+	public function test(){
+		$this->autoRender = false;
+	}
+
 
 }

@@ -9,6 +9,21 @@ class Railway extends RailMasterModel {
 	var $primaryKey = "_id";
 
 	/**
+	 * 路線情報が存在するかチェックする
+	 */
+	public function checkRailway($railway_id){
+		if(!$railway_id){
+			return false;
+		}
+		$res = $this->getById($railway_id);
+		if(empty($res)){
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	/**
 	 * パスワード登録
 	 * @param stirng $railwayName 路線情報
 	 * @param string $companyId 鉄道会社ID(TrainInfoCompany._id)
